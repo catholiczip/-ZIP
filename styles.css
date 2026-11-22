@@ -83,3 +83,58 @@
   .walking-cat { transition: none !important; }
   .walking-cat.is-moving img { animation: none !important; }
 }
+
+
+/* Mobile-only layout correction: keep desktop composition and map behavior intact. */
+@media (max-width: 540px) {
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 8px 8px 24px;
+  }
+  .intro-main {
+    width: 100%;
+    min-width: 0;
+  }
+  .section-kicker {
+    display: block;
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: .65px;
+  }
+  .intro h1 {
+    font-size: clamp(27px, 7.6vw, 34px);
+    line-height: 1.3;
+    letter-spacing: -1.1px;
+    overflow-wrap: keep-all;
+    word-break: keep-all;
+    margin: 12px 0;
+  }
+  .intro p {
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-wrap: keep-all;
+    word-break: keep-all;
+  }
+  .intro-icon {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+  .intro-icon img {
+    display: block;
+    width: min(62vw, 240px);
+    max-width: 100%;
+    height: auto;
+  }
+  .workspace, .map-panel, .directory-panel {
+    min-width: 0;
+  }
+  .header-copy { min-width: 0; }
+  .header-copy .eyebrow { line-height: 1.35; }
+  .header-copy strong { line-height: 1.3; }
+}
+
