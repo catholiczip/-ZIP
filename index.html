@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#084bd1" />
+  <meta name="description" content="가톨릭대학교 캠퍼스 안내 지도. 지도에서 건물을 선택하고 층별 도면을 확인하세요." />
+  <title>가대 ZIP | 캠퍼스 안내</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="가대 ZIP 홈">
+      <img src="./assets/campus-logo.jpg" alt="가대 ZIP 로고" />
+    </a>
+    <div class="header-copy"><span class="eyebrow">CATHOLIC UNIVERSITY CAMPUS GUIDE</span><strong>우리 학교, 한눈에 ZIP!</strong></div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-main"><span class="section-kicker">CAMPUS MAP <span>✦</span> INTERACTIVE GUIDE</span>
+      <h1 id="page-title">찾고 싶은 건물,<br /><em>지도에서 바로 클릭!</em></h1>
+      <p>건물 번호를 선택하면 건물 정보와 층별 도면을 확인할 수 있어요.</p></div>
+      <div class="intro-icon"><img src="./assets/campus-cat_left.png" alt="가대 ZIP 마스코트"></div>
+    </section>
+
+    <div class="workspace">
+      <section class="map-panel" aria-labelledby="map-title">
+        <div class="panel-heading"><div><span class="overline">01 / CAMPUS</span><h2 id="map-title">캠퍼스 전체 지도</h2></div></div>
+        <div class="map-stage" id="map-stage"><img class="campus-map" src="./assets/campus-map.jpg" alt="가톨릭대학교 캠퍼스 건물 배치도. 각 번호는 클릭하여 자세한 정보를 볼 수 있습니다." draggable="false" /><div id="map-hotspots" class="hotspots"></div><div id="walking-cat" class="walking-cat" aria-hidden="true"><img src="./assets/campus-cat_left.png" alt="" draggable="false" /></div></div>
+      </section>
+      <aside class="directory-panel" aria-labelledby="directory-title">
+        <div class="panel-heading directory-heading"><div><span class="overline">02 / DIRECTORY</span><h2 id="directory-title">건물 찾기</h2></div></div>
+        <label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input type="search" id="search" placeholder="건물명 또는 번호 검색" autocomplete="off" aria-label="건물 검색" /></label>
+        <div class="quick-tip">💡 건물명을 검색하거나 목록에서 선택하셔도 됩니다.</div>
+        <div class="directory-list" id="directory-list"></div>
+        <p class="empty-state" id="empty-state" hidden>검색 결과가 없습니다. 다른 이름으로 찾아보세요.</p>
+      </aside>
+    </div>
+    <footer class="site-footer">가대 ZIP <span>·</span> CAMPUS GUIDE</footer>
+  </main>
+
+  <dialog id="building-dialog" class="building-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-layout">
+      <div class="dialog-topbar"><div class="dialog-title-group"><span class="dialog-eyebrow">BUILDING INFORMATION</span><h2 id="dialog-title">건물명</h2><p id="dialog-subtitle"></p></div><button class="close-btn" id="close-dialog" type="button" aria-label="닫기">×</button></div>
+      <div class="dialog-content"><div class="dialog-floor-header"><div><span class="overline">FLOOR GUIDE</span><h3>층별 도면</h3></div><span class="sample-tag" id="floor-status">층별 도면 안내</span></div>
+        <div id="floor-tabs" class="floor-tabs" role="tablist" aria-label="층 선택"></div>
+        <div class="viewer-toolbar" id="viewer-toolbar" hidden><span id="viewer-caption">도면 이미지</span><div class="viewer-actions"><button type="button" id="zoom-out" aria-label="도면 축소" title="축소">−</button><button type="button" id="zoom-reset" aria-label="도면 원래 배율" title="배율 초기화">100%</button><button type="button" id="zoom-in" aria-label="도면 확대" title="확대">＋</button><button type="button" id="open-image" aria-label="도면 새 탭에서 보기" title="원본 보기">↗</button></div></div>
+        <div class="floor-viewer" id="floor-viewer" role="tabpanel" tabindex="0">
+          <img id="floor-image" class="floor-image" alt="" hidden />
+          <section id="floor-info-card" class="floor-info-card" aria-label="교수연구실 안내" hidden></section>
+          <div class="floor-placeholder" id="floor-placeholder"><div class="placeholder-symbol" aria-hidden="true">▦</div><strong id="placeholder-title">층별 도면 준비 중</strong><p>해당 층의 도면이 등록되면<br />이곳에서 바로 확인하실 수 있습니다.</p><label class="upload-label" for="preview-upload">도면 이미지 임시 미리보기 <span>＋</span></label><input id="preview-upload" type="file" accept="image/*" hidden /><small>선택한 파일은 현재 브라우저에서만 표시되며 저장되지 않습니다.</small></div>
+        </div>
+        <div class="floor-notice">도면을 확대하거나 새 탭에서 확인할 수 있습니다. 실제 시설 이용 정보는 학교 안내를 확인해 주세요.</div>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>
