@@ -1,11 +1,3 @@
-/*
-  건물/층 정보 수정 위치
-  - floors: 실제 층 이름으로 변경 (예: ['B2','B1','1F','2F','3F'])
-  - plans: 층별 이미지 경로 등록 (예: { '1F': './assets/floors/9-1F.png' })
-  - x,y: 지도 이미지 상의 번호 중심점 (%). 이미지 원본 비율이 유지되어 화면 크기에도 대응합니다.
-*/
-// 도면 이미지: 원본 27장 + 김수환관 2F·3F 수정본, 총 29장.
-// floorPlans에는 도면이 확인된 층만 등록합니다. 미등록 건물에는 임시 층을 만들지 않습니다.
 const floorPlans = {
   "library": {
     "2F": "./assets/floors/library_2f.webp",
@@ -49,10 +41,12 @@ const floorPlans = {
     "4F": "./assets/floors/seongsim_4f.webp",
     "5F": "./assets/floors/seongsim_5f.webp",
     "ROOF": "./assets/floors/seongsim_roof.webp"
+  },
+  "concert": {
+  "1F": "./assets/floors/concert_1f.webp"
   }
 };
-// 안내판에 명시된 교수연구동 1~9층의 전공 및 학과 정보.
-// 실제 평면도는 제공되지 않았으므로 이 층들은 시설 안내 카드로 표시합니다.
+
 const facultyFloorInfo = {
   "1F": ["특수교육과", "교육대학원"],
   "2F": ["프랑스어문화학과", "교직과", "일어일본문화전공"],
@@ -83,12 +77,12 @@ const buildings = [
   { id:15, name:'베리타스관', alias:'중앙도서관', x:63.2, y:26.9, planKey:'library' },
   { id:16, name:'SH관', alias:'성심관', x:82.1, y:17.9, planKey:'seongsim' },
   { id:17, name:'NP관', alias:'정진석 추기경 약학관', x:67.3, y:16.7 },
-  { id:18, name:'C관', alias:'콘서트홀', x:86.0, y:29.7 },
+  { id:18, name:'C관', alias:'콘서트홀', x:86.0, y:29.7, planKey:'concert' },
   { id:19, name:'대운동장', x:75.8, y:41.3 },
   { id:20, name:'바오로관(사제관)', x:21.0, y:34.7 },
   { id:21, name:'국제교류관', x:24.3, y:30.0 },
   { id:22, name:'예수성심성당', x:8.1, y:47.0 },
-  // 원래 지도에 표시된 1~22번 건물 번호는 변경하지 않습니다.
+
 ].map(b => {
   const plans = b.planKey ? floorPlans[b.planKey] : {};
   const floorOrder = ['B2','B1','1F','2F','3F','4F','5F','6F','7F','8F','9F','10F','ROOF','GUIDE'];
@@ -133,8 +127,6 @@ let selectedBuilding = null;
 let selectedFloor = null;
 let tempPreviewUrl = null;
 
-// The mascot shares the same percentage-based coordinates as the existing map pins.
-// Keep the map visible during the walk; open the original floor-plan dialog on arrival.
 let catPosition = { x: 20, y: 72 };
 let pendingArrival = null;
 function visitBuilding(b) {
@@ -190,9 +182,8 @@ buildings.forEach(b => {
   item.disabled = b.nonInteractive;
   item.innerHTML = '<span class="building-number"></span><span class="building-label"><strong></strong><small></small></span><span class="item-arrow" aria-hidden="true">↗</span>';
   item.querySelector('.building-number').textContent = b.directoryOnly ? '＋' : String(b.id).padStart(2,'0');
-  // 건물 찾기에서는 등록된 약어를 우선 표시하고, 약어가 없으면 정식 명칭을 유지합니다.
   item.querySelector('strong').textContent = b.alias || b.name;
-  // 팝업을 열 수 없는 건물에는 도면 준비 문구를 표시하지 않습니다.
+  
   const directoryDetail = item.querySelector('small');
   directoryDetail.textContent = b.nonInteractive
     ? ''
