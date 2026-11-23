@@ -135,7 +135,10 @@
   .header-copy .eyebrow { line-height: 1.35; }
   .header-copy strong { line-height: 1.3; }
 }
+
+/* Keep the status node for JavaScript, hide its visual badge. */
 #floor-status {
-    display: none !important;
+  display: none !important;
 }
+
 
