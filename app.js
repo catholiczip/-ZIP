@@ -3,10 +3,10 @@ const floorPlans = {
     "1F": "./assets/floors/pharmacy_1f.webp",
     "2F": "./assets/floors/pharmacy_2f.webp"
   },
-  "law": {
-    "1F": "./assets/floors/law_1f.webp",
-    "2F": "./assets/floors/law_2f.webp",
-    "3F": "./assets/floors/law_3f.webp"
+  "bambino": {
+  "1F": "./assets/floors/law_1f.webp",
+  "2F": "./assets/floors/law_2f.webp",
+  "3F": "./assets/floors/law_3f.webp"
   },
   "nicholls": {
     "1F": "./assets/floors/nicholls_1f.webp",
@@ -94,7 +94,7 @@ const buildings = [
   { id:5, name:'안드레아 기숙사', x:26.6, y:51.3 },
   { id:6, name:'M관', alias:'마리아관', x:37.7, y:55.7, planKey:'maria' },
   { id:7, name:'N관', alias:'니콜스관', x:33.2, y:45.7, planKey:'nicholls' },
-  { id:8, name:'BA관', alias:'밤비노관', x:34.6, y:40.2 },
+  { id:8, name:'BA관', alias:'밤비노관', x:34.6, y:40.2, planKey:'bambino' },
   { id:9, name:'D관', alias:'다솔관', x:33.5, y:33.4, planKey:'dasol' },
   { id:10, name:'V관', alias:'비르투스관', x:29.6, y:41.1, planKey:'virtus' },
   { id:11, name:'B관(소피이바라관)', alias:'학생미래인재관', x:44.7, y:36.0, planKey:'student' },
