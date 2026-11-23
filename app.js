@@ -70,7 +70,7 @@ const buildings = [
   { id:8, name:'BA관', alias:'밤비노관', x:34.6, y:40.2 },
   { id:9, name:'D관', alias:'다솔관', x:33.5, y:33.4, planKey:'dasol' },
   { id:10, name:'V관', alias:'비르투스관', x:29.6, y:41.1 },
-  { id:11, name:'B관(소피아바라관)', alias:'학생미래인재관', x:44.7, y:36.0, planKey:'student' },
+  { id:11, name:'B관(소피이바라관)', alias:'학생미래인재관', x:44.7, y:36.0, planKey:'student' },
   { id:12, name:'하늘동산', x:49.8, y:47.2 },
   { id:13, name:'H관', alias:'미카엘관 - 행정동', x:53.0, y:26.7, planKey:'mikael_admin' },
   { id:14, name:'T관', alias:'미카엘관 - 교수연구동', x:46.6, y:26.2, planKey:'mikael_faculty', infoFloors:facultyFloorInfo },
