@@ -85,7 +85,7 @@ const facultyFloorInfo = {
   "8F": ["국어국문학전공", "철학전공", "국사학전공"],
   "9F": ["중국언어문화전공", "종교학과", "행정학전공"]
 };
-const nonInteractiveBuildingIds = new Set([1, 2, 12, 19, 20, 21, 22]);
+const nonInteractiveBuildingIds = new Set([1, 2, 4, 5, 12, 19, 20, 21, 22]);
 const buildings = [
   { id:1, name:'정문', x:20.0, y:67.4 },
   { id:2, name:'창업보육센터', x:17.1, y:65.2 },
