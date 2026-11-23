@@ -1,7 +1,7 @@
 const floorPlans = {
   "pharmacy": {
     "1F": "./assets/floors/pharmacy_1f.webp",
-    "2F": "./assets/floors/pharmacy_2f.webp"
+    "2F": "./assets/floors/pharmacy_2f.webp",
     "GUIDE": "./assets/floors/약학관_층별안내.webp"
   },
   "bambino": {
