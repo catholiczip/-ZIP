@@ -1,4 +1,31 @@
 const floorPlans = {
+  "pharmacy": {
+    "1F": "./assets/floors/pharmacy_1f.webp",
+    "2F": "./assets/floors/pharmacy_2f.webp"
+  },
+  "law": {
+    "1F": "./assets/floors/law_1f.webp",
+    "2F": "./assets/floors/law_2f.webp",
+    "3F": "./assets/floors/law_3f.webp"
+  },
+  "nicholls": {
+    "1F": "./assets/floors/nicholls_1f.webp",
+    "2F": "./assets/floors/nicholls_2f.webp",
+    "3F": "./assets/floors/nicholls_3f.webp",
+    "4F": "./assets/floors/nicholls_4f.webp",
+    "5F": "./assets/floors/nicholls_5f.webp"
+  },
+  "maria": {
+    "1F": "./assets/floors/maria_1f.webp",
+    "2F": "./assets/floors/maria_2f.webp",
+    "3F": "./assets/floors/maria_3f.webp",
+    "4F": "./assets/floors/maria_4f.webp"
+  },
+  "virtus": {
+    "1F": "./assets/floors/virtus_1f.webp",
+    "2F": "./assets/floors/virtus_2f.webp",
+    "3F": "./assets/floors/virtus_3f.webp"
+  },
   "library": {
     "2F": "./assets/floors/library_2f.webp",
     "3F": "./assets/floors/library_3f.webp",
