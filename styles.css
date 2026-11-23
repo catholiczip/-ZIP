@@ -142,3 +142,11 @@
 }
 
 
+/* Mobile directory: show all building entries in page scroll. */
+@media (max-width: 870px) {
+  .directory-list {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
