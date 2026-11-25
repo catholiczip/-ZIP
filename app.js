@@ -376,13 +376,13 @@ const facilityCategories = {
   {
     "name": "GOURMET PLACE X PAUL BASSETT",
     "location": "학생미래인재관 2층",
-    "hours": "월요일~토요일 08:00~18:00\n\u0009라스트오더 17:30\n\u0009일요일 휴무",
+    "hours": "월요일~토요일 08:00~18:00\n\u2003라스트오더 17:30\n\u2003일요일 휴무",
     "image": "./assets/facilities/paul-bassett-student.webp"
   },
   {
     "name": "카페하랑",
     "location": "니콜스관 4층",
-    "hours": "평일 08:30~16:30\n\u0009주말 휴무",
+    "hours": "평일 08:30~16:30\n\u2003주말 휴무",
     "image": "./assets/facilities/cafe-harang.webp"
   },
   {
@@ -399,7 +399,7 @@ const facilityCategories = {
   {
     "name": "매머드익스프레스",
     "location": "학교 정문 앞",
-    "hours": "학기 중 08:00~20:00\n\u0009라스트오더 19:30\n\u0009방학 중 주말 09:00~18:00\n\u0009라스트오더 17:30",
+    "hours": "학기 중 08:00~20:00\n\u2003라스트오더 19:30\n\u2003방학 중 주말 09:00~18:00\n\u2003라스트오더 17:30",
     "image": "./assets/facilities/mammoth-express.webp"
   }
 ] },
@@ -407,7 +407,7 @@ const facilityCategories = {
   {
     "name": "부온 프란조 (Buon Pranzo)",
     "location": "학생미래인재관 2층",
-    "hours": "조식 08:00~09:30\n\u0009중식 11:30~14:00\n\u0009석식 17:30~19:00",
+    "hours": "조식 08:00~09:30\n\u2003중식 11:30~14:00\n\u2003석식 17:30~19:00",
     "image": "./assets/facilities/buon-pranzo.webp",
     "phone": "02-2164-4736"
   },
