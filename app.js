@@ -402,7 +402,28 @@ const facilityCategories = {
     "image": "./assets/facilities/mammoth-express.webp"
   }
 ] },
-  restaurant: { title: '식당', items: [] },
+  restaurant: { title: '식당', items: [
+  {
+    "name": "부온 프란조 (Buon Pranzo)",
+    "location": "학생미래인재관 2층",
+    "hours": "조식 08:00~09:30\n중식 11:30~14:00\n석식 17:30~19:00",
+    "image": "./assets/facilities/buon-pranzo.webp",
+    "phone": "02-2164-4736"
+  },
+  {
+    "name": "카페 보나 (Café Bona)",
+    "location": "학생미래인재관 1층",
+    "hours": "중식 11:30~14:00",
+    "image": "./assets/facilities/cafe-bona.webp",
+    "phone": "02-2164-4729"
+  },
+  {
+    "name": "카페 멘사 (Café Mensa)",
+    "location": "김수환관 1층",
+    "hours": "10:30~14:30",
+    "image": "./assets/facilities/cafe-mensa.webp"
+  }
+] },
   'cup-return': { title: '다회용컵 반납함', items: [
   {
     "name": "김수환관 다회용컵 반납함",
@@ -564,6 +585,11 @@ function openFacility(key) {
       hours.textContent = `운영시간: ${item.hours}`;
       hours.style.whiteSpace = 'pre-line';
       card.appendChild(hours);
+    }
+    if (item.phone) {
+      const phone = document.createElement('p');
+      phone.textContent = `전화번호: ${item.phone}`;
+      card.appendChild(phone);
     }
     facilityList.appendChild(card);
   });
