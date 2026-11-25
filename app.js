@@ -582,10 +582,10 @@ function openFacility(key) {
     }
     card.appendChild(location);
     if (item.hours) {
-  const hours = document.createElement('p');
-  hours.textContent = `운영시간: ${item.hours}`;
-  hours.style.whiteSpace = 'pre-wrap';
-  card.appendChild(hours);
+      const hours = document.createElement('p');
+      hours.textContent = `운영시간: ${item.hours}`;
+      hours.style.whiteSpace = 'pre-wrap';
+      card.appendChild(hours);
     }
     if (item.phone) {
       const phone = document.createElement('p');
