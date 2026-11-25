@@ -367,7 +367,41 @@ dialog.addEventListener('close', clearTempPreview);
 
 // Campus facilities: add verified names, locations and image paths to these arrays.
 const facilityCategories = {
-  cafe: { title: '카페', items: [] },
+  cafe: { title: '카페', items: [
+  {
+    "name": "카페드림",
+    "location": "중앙도서관 2층",
+    "image": "./assets/facilities/cafe-dream.webp"
+  },
+  {
+    "name": "GOURMET PLACE X PAUL BASSETT",
+    "location": "학생미래인재관 2층",
+    "hours": "월요일~토요일 08:00~18:00 · 라스트오더 17:30\n일요일 휴무",
+    "image": "./assets/facilities/paul-bassett-student.webp"
+  },
+  {
+    "name": "카페하랑",
+    "location": "니콜스관 4층",
+    "hours": "평일 08:30~16:30\n주말 휴무",
+    "image": "./assets/facilities/cafe-harang.webp"
+  },
+  {
+    "name": "클럽1847",
+    "location": "안드레아관 1층",
+    "hours": "08:00~18:30"
+  },
+  {
+    "name": "GOURMET PLACE X PAUL BASSETT",
+    "location": "김수환관 1층 카페멘사 내부",
+    "image": "./assets/facilities/paul-bassett-kim.webp"
+  },
+  {
+    "name": "매머드익스프레스",
+    "location": "학교 입구",
+    "hours": "학기 중 08:00~20:00 · 라스트오더 19:30\n방학 중 주말 09:00~18:00 · 라스트오더 17:30",
+    "image": "./assets/facilities/mammoth-express.webp"
+  }
+] },
   restaurant: { title: '식당', items: [] },
   'cup-return': { title: '다회용컵 반납함', items: [
   {
@@ -525,6 +559,12 @@ function openFacility(key) {
       card.appendChild(photo);
     }
     card.appendChild(location);
+    if (item.hours) {
+      const hours = document.createElement('p');
+      hours.textContent = `운영시간: ${item.hours}`;
+      hours.style.whiteSpace = 'pre-line';
+      card.appendChild(hours);
+    }
     facilityList.appendChild(card);
   });
   if (!facilityDialog.open) facilityDialog.showModal();
