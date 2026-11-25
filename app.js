@@ -369,8 +369,120 @@ dialog.addEventListener('close', clearTempPreview);
 const facilityCategories = {
   cafe: { title: '카페', items: [] },
   restaurant: { title: '식당', items: [] },
-  'cup-return': { title: '다회용컵 반납함', items: [] },
-  convenience: { title: '편의점', items: [] }
+  'cup-return': { title: '다회용컵 반납함', items: [
+  {
+    "name": "김수환관 다회용컵 반납함",
+    "location": "1층 카페멘사 출입구 옆",
+    "image": "./assets/facilities/cup-return-01.webp"
+  },
+  {
+    "name": "학생미래인재관 다회용컵 반납함",
+    "location": "2층 부온프란조 식당 옆",
+    "image": "./assets/facilities/cup-return-02.webp"
+  },
+  {
+    "name": "학생미래인재관 다회용컵 반납함",
+    "location": "1층 카페보나 옆",
+    "image": "./assets/facilities/cup-return-03.webp"
+  },
+  {
+    "name": "콘서트홀 다회용컵 반납함",
+    "location": "1층 CH108 음악과 학과사무실 옆",
+    "image": "./assets/facilities/cup-return-04.webp"
+  },
+  {
+    "name": "중앙도서관 다회용컵 반납함",
+    "location": "2층 카페드림 옆 휴게실 내부",
+    "image": "./assets/facilities/cup-return-05.webp"
+  },
+  {
+    "name": "중앙도서관 다회용컵 반납함",
+    "location": "2층 미디어실 옆",
+    "image": "./assets/facilities/cup-return-06.webp"
+  },
+  {
+    "name": "약학관 다회용컵 반납함",
+    "location": "1층 NP115 생약표본실 옆",
+    "image": "./assets/facilities/cup-return-07.webp"
+  },
+  {
+    "name": "안드레아관 다회용컵 반납함",
+    "location": "카페 클럽 1847 맞은편",
+    "image": "./assets/facilities/cup-return-08.webp"
+  },
+  {
+    "name": "스테파노관 다회용컵 반납함",
+    "location": "기숙사 출입구 앞",
+    "image": "./assets/facilities/cup-return-09.webp"
+  },
+  {
+    "name": "스테파노관 다회용컵 반납함",
+    "location": "기숙사 안내데스크 옆",
+    "image": "./assets/facilities/cup-return-10.webp"
+  },
+  {
+    "name": "성심관 다회용컵 반납함",
+    "location": "2층 엘리베이터 맞은편",
+    "image": "./assets/facilities/cup-return-11.webp"
+  },
+  {
+    "name": "미카엘관 다회용컵 반납함",
+    "location": "1층 우리은행 ATM 옆",
+    "image": "./assets/facilities/cup-return-12.webp"
+  },
+  {
+    "name": "다솔관 다회용컵 반납함",
+    "location": "2층 정문 출입구 앞",
+    "image": "./assets/facilities/cup-return-13.webp"
+  },
+  {
+    "name": "니콜스관 다회용컵 반납함",
+    "location": "4층 카페하랑 맞은편 휴게공간",
+    "image": "./assets/facilities/cup-return-14.webp"
+  },
+  {
+    "name": "니콜스관 다회용컵 반납함",
+    "location": "4층 여자화장실 옆",
+    "image": "./assets/facilities/cup-return-15.webp"
+  },
+  {
+    "name": "니콜스관 다회용컵 반납함",
+    "location": "1층 남자화장실 앞",
+    "image": "./assets/facilities/cup-return-16.webp"
+  },
+  {
+    "name": "김수환관 다회용컵 반납함",
+    "location": "매머드커피 앞",
+    "image": "./assets/facilities/cup-return-17.webp"
+  },
+  {
+    "name": "김수환관 다회용컵 반납함",
+    "location": "2층 흡연실 출입구 옆",
+    "image": "./assets/facilities/cup-return-18.webp"
+  },
+  {
+    "name": "김수환관 다회용컵 반납함",
+    "location": "2층 인커라 방면 엘리베이터 옆",
+    "image": "./assets/facilities/cup-return-19.webp"
+  },
+  {
+    "name": "김수환관 다회용컵 반납함",
+    "location": "1층 카페멘사 내부",
+    "image": "./assets/facilities/cup-return-20.webp"
+  }
+] },
+  convenience: { title: '편의점', items: [
+  {
+    "name": "이마트24",
+    "location": "김수환관(K관) 1층 · 카페 멘사 내부",
+    "image": "./assets/facilities/emart24-kim.webp"
+  },
+  {
+    "name": "GS25",
+    "location": "학생미래인재관(B관) 1층",
+    "image": "./assets/facilities/gs25-student.webp"
+  }
+] }
 };
 // Item format: { name: '시설명', location: '건물명 · 층수 · 상세 위치', image: './assets/facilities/photo.webp' }
 const facilityDialog = document.querySelector('#facility-dialog');
