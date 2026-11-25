@@ -388,18 +388,18 @@ const facilityCategories = {
   {
     "name": "클럽1847",
     "location": "안드레아관 1층",
-    "hours": "08:00~18:30"
+    "hours": "08:00~18:30",
     "image": "./assets/facilities/club1847.webp"
   },
   {
     "name": "GOURMET PLACE X PAUL BASSETT",
-    "location": "김수환관 1층 카페멘사 내부",
+    "location": "김수환관 1층 카페 멘사 (Café Mensa) 내부",
     "image": "./assets/facilities/paul-bassett-kim.webp"
   },
   {
     "name": "매머드익스프레스",
-    "location": "학교 입구",
-    "hours": "학기 중 08:00~20:00 · 라스트오더 19:30\n방학 중 주말 09:00~18:00 · 라스트오더 17:30",
+    "location": "학교 정문 앞",
+    "hours": "학기 중 08:00~20:00\n\t라스트오더 19:30\n\t방학 중 주말 09:00~18:00\n\t라스트오더 17:30",
     "image": "./assets/facilities/mammoth-express.webp"
   }
 ] },
