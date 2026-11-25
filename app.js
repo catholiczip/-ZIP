@@ -427,7 +427,7 @@ const facilityCategories = {
 ] },
   'cup-return': { title: '다회용컵 반납함', items: [
   {
-    "name": "김수환 (K관)",
+    "name": "김수환관 (K관)",
     "location": "1층 카페멘사 출입구 옆",
     "image": "./assets/facilities/cup-return-01.webp"
   },
