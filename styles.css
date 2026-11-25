@@ -150,3 +150,18 @@
   }
 }
 
+
+/* Facility menu: overlay inside the original map image. */
+.facility-menu {position:absolute;left:4%;bottom:5%;width:61%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1%;z-index:4;line-height:normal;}
+.facility-btn {display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;min-width:0;padding:0;border:0;background:transparent;color:#14216c;font-weight:800;transition:transform .18s ease;}
+.facility-btn img {display:block;width:100%;max-width:125px;aspect-ratio:1;object-fit:contain;mix-blend-mode:multiply;}
+.facility-btn span {font-size:clamp(9px,1.05vw,15px);line-height:1.25;text-align:center;word-break:keep-all;}
+@media(hover:hover){.facility-btn:hover{transform:translateY(-3px) scale(1.04)}}
+.facility-dialog {width:min(680px,calc(100vw - 24px));color:#18243e;}
+.facility-card {display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:16px 0;border-bottom:1px solid #e5ebf6;}
+.facility-card:last-child {border-bottom:0;}
+.facility-card img {display:block;width:100%;max-height:320px;object-fit:contain;border-radius:12px;background:#f5f8ff;}
+.facility-card h3,.facility-card p {margin:0;line-height:1.5;overflow-wrap:anywhere;}
+.facility-card p,.facility-empty {color:#687791;font-size:14px;line-height:1.6;}
+@media(max-width:540px){.facility-btn{gap:2px}.facility-btn span{font-size:clamp(8px,2.2vw,11px)}.facility-menu{bottom:4%;}}
+@media(prefers-reduced-motion:reduce){.facility-btn{transition:none}.facility-btn:hover{transform:none}}
