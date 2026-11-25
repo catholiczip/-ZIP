@@ -376,13 +376,13 @@ const facilityCategories = {
   {
     "name": "GOURMET PLACE X PAUL BASSETT",
     "location": "학생미래인재관 2층",
-    "hours": "월요일~토요일 08:00~18:00\n\u2003라스트오더 17:30\n\u2003일요일 휴무",
+    "hours": "월요일~토요일 08:00~18:00\n\u3000라스트오더 17:30\n\u3000일요일 휴무",
     "image": "./assets/facilities/paul-bassett-student.webp"
   },
   {
     "name": "카페하랑",
     "location": "니콜스관 4층",
-    "hours": "평일 08:30~16:30\n\u2003주말 휴무",
+    "hours": "평일 08:30~16:30\n\u3000주말 휴무",
     "image": "./assets/facilities/cafe-harang.webp"
   },
   {
@@ -399,7 +399,7 @@ const facilityCategories = {
   {
     "name": "매머드익스프레스",
     "location": "학교 정문 앞",
-    "hours": "학기 중 08:00~20:00\n\u2003라스트오더 19:30\n\u2003방학 중 주말 09:00~18:00\n\u2003라스트오더 17:30",
+    "hours": "학기 중 08:00~20:00\n\u3000라스트오더 19:30\n\u3000방학 중 주말 09:00~18:00\n\u3000라스트오더 17:30",
     "image": "./assets/facilities/mammoth-express.webp"
   }
 ] },
@@ -407,7 +407,7 @@ const facilityCategories = {
   {
     "name": "부온 프란조 (Buon Pranzo)",
     "location": "학생미래인재관 2층",
-    "hours": "조식 08:00~09:30\n\u2003중식 11:30~14:00\n\u2003석식 17:30~19:00",
+    "hours": "조식 08:00~09:30\n\u3000중식 11:30~14:00\n\u3000석식 17:30~19:00",
     "image": "./assets/facilities/buon-pranzo.webp",
     "phone": "02-2164-4736"
   },
@@ -427,102 +427,102 @@ const facilityCategories = {
 ] },
   'cup-return': { title: '다회용컵 반납함', items: [
   {
-    "name": "김수환관 다회용컵 반납함",
+    "name": "김수환 (K관)",
     "location": "1층 카페멘사 출입구 옆",
     "image": "./assets/facilities/cup-return-01.webp"
   },
   {
-    "name": "학생미래인재관 다회용컵 반납함",
+    "name": "학생미래인재관 (B관)",
     "location": "2층 부온프란조 식당 옆",
     "image": "./assets/facilities/cup-return-02.webp"
   },
   {
-    "name": "학생미래인재관 다회용컵 반납함",
+    "name": "학생미래인재관 (B관)",
     "location": "1층 카페보나 옆",
     "image": "./assets/facilities/cup-return-03.webp"
   },
   {
-    "name": "콘서트홀 다회용컵 반납함",
+    "name": "콘서트홀 (C관)",
     "location": "1층 CH108 음악과 학과사무실 옆",
     "image": "./assets/facilities/cup-return-04.webp"
   },
   {
-    "name": "중앙도서관 다회용컵 반납함",
+    "name": "중앙도서관 (베리타스관)",
     "location": "2층 카페드림 옆 휴게실 내부",
     "image": "./assets/facilities/cup-return-05.webp"
   },
   {
-    "name": "중앙도서관 다회용컵 반납함",
+    "name": "중앙도서관 (베리타스관)",
     "location": "2층 미디어실 옆",
     "image": "./assets/facilities/cup-return-06.webp"
   },
   {
-    "name": "약학관 다회용컵 반납함",
+    "name": "약학관 (NP관)",
     "location": "1층 NP115 생약표본실 옆",
     "image": "./assets/facilities/cup-return-07.webp"
   },
   {
-    "name": "안드레아관 다회용컵 반납함",
+    "name": "안드레아관",
     "location": "카페 클럽 1847 맞은편",
     "image": "./assets/facilities/cup-return-08.webp"
   },
   {
-    "name": "스테파노관 다회용컵 반납함",
+    "name": "스테파노관",
     "location": "기숙사 출입구 앞",
     "image": "./assets/facilities/cup-return-09.webp"
   },
   {
-    "name": "스테파노관 다회용컵 반납함",
+    "name": "스테파노관",
     "location": "기숙사 안내데스크 옆",
     "image": "./assets/facilities/cup-return-10.webp"
   },
   {
-    "name": "성심관 다회용컵 반납함",
+    "name": "성심관 (SH관)",
     "location": "2층 엘리베이터 맞은편",
     "image": "./assets/facilities/cup-return-11.webp"
   },
   {
-    "name": "미카엘관 다회용컵 반납함",
+    "name": "미카엘관",
     "location": "1층 우리은행 ATM 옆",
     "image": "./assets/facilities/cup-return-12.webp"
   },
   {
-    "name": "다솔관 다회용컵 반납함",
+    "name": "다솔관 (D관)",
     "location": "2층 정문 출입구 앞",
     "image": "./assets/facilities/cup-return-13.webp"
   },
   {
-    "name": "니콜스관 다회용컵 반납함",
+    "name": "니콜스관 (N관)",
     "location": "4층 카페하랑 맞은편 휴게공간",
     "image": "./assets/facilities/cup-return-14.webp"
   },
   {
-    "name": "니콜스관 다회용컵 반납함",
+    "name": "니콜스관 (N관)",
     "location": "4층 여자화장실 옆",
     "image": "./assets/facilities/cup-return-15.webp"
   },
   {
-    "name": "니콜스관 다회용컵 반납함",
+    "name": "니콜스관 (N관)",
     "location": "1층 남자화장실 앞",
     "image": "./assets/facilities/cup-return-16.webp"
   },
   {
-    "name": "김수환관 다회용컵 반납함",
+    "name": "김수환관 (K관)",
     "location": "매머드커피 앞",
     "image": "./assets/facilities/cup-return-17.webp"
   },
   {
-    "name": "김수환관 다회용컵 반납함",
+    "name": "김수환관 (K관)",
     "location": "2층 흡연실 출입구 옆",
     "image": "./assets/facilities/cup-return-18.webp"
   },
   {
-    "name": "김수환관 다회용컵 반납함",
+    "name": "김수환관 (K관)",
     "location": "2층 인커라 방면 엘리베이터 옆",
     "image": "./assets/facilities/cup-return-19.webp"
   },
   {
-    "name": "김수환관 다회용컵 반납함",
+    "name": "김수환관 (K관)",
     "location": "1층 카페멘사 내부",
     "image": "./assets/facilities/cup-return-20.webp"
   }
@@ -535,7 +535,7 @@ const facilityCategories = {
   },
   {
     "name": "GS25",
-    "location": "학생미래인재관(B관) 1층",
+    "location": "학생미래인재관 (B관) 1층",
     "image": "./assets/facilities/gs25-student.webp"
   }
 ] }
