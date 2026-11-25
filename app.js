@@ -363,3 +363,65 @@ function clearTempPreviewURLOnly() {
 document.querySelector('#close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 dialog.addEventListener('close', clearTempPreview);
+
+
+// Campus facilities: add verified names, locations and image paths to these arrays.
+const facilityCategories = {
+  cafe: { title: '카페', items: [] },
+  restaurant: { title: '식당', items: [] },
+  'cup-return': { title: '다회용컵 반납함', items: [] },
+  convenience: { title: '편의점', items: [] }
+};
+// Item format: { name: '시설명', location: '건물명 · 층수 · 상세 위치', image: './assets/facilities/photo.webp' }
+const facilityDialog = document.querySelector('#facility-dialog');
+const facilityTitle = document.querySelector('#facility-title');
+const facilityList = document.querySelector('#facility-list');
+function openFacility(key) {
+  const category = facilityCategories[key];
+  if (!category) return;
+  // Prevent a previously scheduled building popup from opening over this dialog.
+  if (pendingArrival !== null) {
+    clearTimeout(pendingArrival);
+    pendingArrival = null;
+    walkingCat.classList.remove('is-moving');
+  }
+  facilityTitle.textContent = `${category.title} 안내`;
+  facilityList.replaceChildren();
+  if (!category.items.length) {
+    const message = document.createElement('p');
+    message.className = 'facility-empty';
+    message.textContent = '시설 사진과 위치 정보를 준비 중입니다.';
+    facilityList.appendChild(message);
+  }
+  category.items.forEach(item => {
+    const card = document.createElement('article');
+    card.className = 'facility-card';
+    const name = document.createElement('h3');
+    name.textContent = item.name;
+    const location = document.createElement('p');
+    location.textContent = item.location;
+    card.appendChild(name);
+    if (item.image) {
+      const photo = document.createElement('img');
+      photo.alt = `${item.name} 사진`;
+      photo.addEventListener('error', () => {
+        const note = document.createElement('p');
+        note.textContent = '사진을 불러올 수 없습니다.';
+        photo.replaceWith(note);
+      }, { once: true });
+      photo.src = item.image;
+      card.appendChild(photo);
+    }
+    card.appendChild(location);
+    facilityList.appendChild(card);
+  });
+  if (!facilityDialog.open) facilityDialog.showModal();
+  facilityDialog.scrollTop = 0;
+}
+document.querySelectorAll('.facility-btn').forEach(button => {
+  button.addEventListener('click', () => openFacility(button.dataset.facility));
+});
+document.querySelector('#close-facility-dialog').addEventListener('click', () => facilityDialog.close());
+facilityDialog.addEventListener('click', event => {
+  if (event.target === facilityDialog) facilityDialog.close();
+});
