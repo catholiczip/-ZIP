@@ -369,26 +369,27 @@ dialog.addEventListener('close', clearTempPreview);
 const facilityCategories = {
   cafe: { title: '카페', items: [
   {
-    "name": "카페드림",
+    "name": "카페드림 (café dream)",
     "location": "중앙도서관 2층",
     "image": "./assets/facilities/cafe-dream.webp"
   },
   {
     "name": "GOURMET PLACE X PAUL BASSETT",
     "location": "학생미래인재관 2층",
-    "hours": "월요일~토요일 08:00~18:00 · 라스트오더 17:30\n일요일 휴무",
+    "hours": "월요일~토요일 08:00~18:00\n\t라스트오더 17:30\n\t일요일 휴무",
     "image": "./assets/facilities/paul-bassett-student.webp"
   },
   {
     "name": "카페하랑",
     "location": "니콜스관 4층",
-    "hours": "평일 08:30~16:30\n주말 휴무",
+    "hours": "평일 08:30~16:30\n\t주말 휴무",
     "image": "./assets/facilities/cafe-harang.webp"
   },
   {
     "name": "클럽1847",
     "location": "안드레아관 1층",
     "hours": "08:00~18:30"
+    "image": "./assets/facilities/club1847.webp"
   },
   {
     "name": "GOURMET PLACE X PAUL BASSETT",
