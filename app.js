@@ -604,3 +604,113 @@ document.querySelector('#close-facility-dialog').addEventListener('click', () =>
 facilityDialog.addEventListener('click', event => {
   if (event.target === facilityDialog) facilityDialog.close();
 });
+
+// Campus onboarding: reuse the existing building dialog for the floor example.
+(() => {
+  const root = document.querySelector('#campus-tour');
+  const help = document.querySelector('#tour-help');
+  const spot = document.querySelector('#tour-spotlight');
+  const card = document.querySelector('#tour-card');
+  const next = document.querySelector('#tour-next');
+  const prev = document.querySelector('#tour-prev');
+  const skip = document.querySelector('#tour-skip');
+  const close = document.querySelector('#tour-close');
+  const key = 'campusTourCompleted';
+  const steps = [
+    { title:'가대 ZIP에 오신 것을 환영해요!', text:'건물별 층별 도면부터 교내 편의시설까지, 가대 ZIP에서 한눈에 확인해 보세요.' },
+    { target:'.map-hotspot:not(:disabled)', title:'캠퍼스 전체 지도', text:'지도에 표시된 건물 번호를 누르면 고양이가 이동하고, 이용 가능한 건물의 층별 도면이 열려요.' },
+    { target:'#floor-tabs', demo:true, title:'층별 도면 확인', text:'팝업 상단에서 원하는 층을 선택하면 강의실과 시설 위치를 확인할 수 있어요. 도면 확대도 가능해요.' },
+    { target:'.facility-menu', title:'교내 편의시설', text:'지도 아래 아이콘을 누르면 카페, 식당, 다회용컵 반납함, 편의점의 사진과 위치, 등록된 운영시간을 확인할 수 있어요.' },
+    { target:'.search-field', title:'건물 검색', text:'건물 이름이나 약어를 입력하면 원하는 건물을 빠르게 찾을 수 있어요.' },
+    { target:'.directory-item:not(:disabled)', title:'건물 목록', text:'건물 목록에서도 원하는 건물을 선택할 수 있어요. 안내가 다시 필요하면 상단의 ? 버튼을 눌러 주세요!' }
+  ];
+  let index = -1, demoOpen = false, oldFocus = null, oldOverflow = '', locked = [], frame = 0;
+  function unlock() { locked.forEach(el => { el.inert = false; }); locked = []; }
+  function lock(elements) { elements.forEach(el => { if (el && !el.inert) { el.inert = true; locked.push(el); } }); }
+  function leaveDemo() {
+    if (!demoOpen) return;
+    document.body.appendChild(root);
+    demoOpen = false;
+    if (dialog.open) dialog.close();
+  }
+  function position() {
+    if (index < 0) return;
+    const w = root.clientWidth, h = root.clientHeight;
+    if (!w || !h) return;
+    const target = document.querySelector(steps[index].target || '#page-title');
+    const r = target?.getBoundingClientRect();
+    const base = root.getBoundingClientRect();
+    const clamp = (v,min,max) => Math.max(min,Math.min(max,v));
+    const x = r ? clamp(r.left-base.left-6,0,w) : w/2;
+    const y = r ? clamp(r.top-base.top-6,0,h) : h/2;
+    const right = r ? clamp(r.right-base.left+6,0,w) : x;
+    const bottom = r ? clamp(r.bottom-base.top+6,0,h) : y;
+    const visible = index !== 0 && r && right>x && bottom>y;
+    Object.assign(spot.style,{left:`${visible?x:w/2}px`,top:`${visible?y:h/2}px`,width:`${visible?right-x:0}px`,height:`${visible?bottom-y:0}px`,borderWidth:visible?'2px':'0'});
+    const cw=card.offsetWidth,ch=card.offsetHeight;
+    let left=(w-cw)/2, top=(h-ch)/2;
+    if (visible) {
+      left=clamp((x+right-cw)/2,12,w-cw-12);
+      if (h-bottom >= ch+20) top=bottom+12;
+      else if (y >= ch+20) top=y-ch-12;
+      else if (w-right >= cw+20) {left=right+12;top=clamp(y,12,h-ch-12);}
+      else if (x >= cw+20) {left=x-cw-12;top=clamp(y,12,h-ch-12);}
+      else top=(y > h-bottom)?12:h-ch-12;
+    }
+    card.style.left=`${clamp(left,12,w-cw-12)}px`;
+    card.style.top=`${clamp(top,12,h-ch-12)}px`;
+  }
+  function schedulePosition() { cancelAnimationFrame(frame); frame=requestAnimationFrame(position); }
+  function show(i) {
+    unlock(); leaveDemo(); index=i;
+    const step=steps[i];
+    if(step.demo) {
+      const example=buildings.find(b=>!b.nonInteractive && b.plans['1F']);
+      if(example) { openBuilding(example); demoOpen=true; dialog.appendChild(root); lock([...dialog.children].filter(el=>el!==root)); }
+    }
+    if(!demoOpen) lock([document.querySelector('.site-header'),document.querySelector('.page-shell')]);
+    root.hidden=false;
+    document.querySelector('#tour-title').textContent=step.title;
+    document.querySelector('#tour-description').textContent=step.text;
+    document.querySelector('#tour-count').textContent=`${i+1} / ${steps.length}`;
+    document.querySelector('#tour-progress').replaceChildren(...steps.map((_,n)=>{const el=document.createElement('span');if(n<=i)el.className='current';return el;}));
+    prev.hidden=i===0; next.textContent=i===steps.length-1?'완료':'다음';
+    const target=document.querySelector(step.target||'.intro');
+    target?.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});
+    position(); schedulePosition(); next.focus({preventScroll:true});
+  }
+  function start() {
+    if(index>=0 || dialog.open || facilityDialog.open) return;
+    if(pendingArrival!==null) {clearTimeout(pendingArrival);pendingArrival=null;walkingCat.classList.remove('is-moving');}
+    oldFocus=document.activeElement;oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';
+    show(0);
+  }
+  function finish() {
+    if(index<0)return;
+    index=-1;root.hidden=true;cancelAnimationFrame(frame);unlock();leaveDemo();document.body.style.overflow=oldOverflow;
+    try{localStorage.setItem(key,'true');}catch{}
+    if(oldFocus===help) help.focus(); else {window.scrollTo(0,0);help.focus({preventScroll:true});}
+  }
+  help.addEventListener('click',start);
+  next.addEventListener('click',()=>index===steps.length-1?finish():show(index+1));
+  prev.addEventListener('click',()=>{if(index>0)show(index-1);});
+  skip.addEventListener('click',finish);close.addEventListener('click',finish);
+  document.addEventListener('keydown',e=>{
+    if(index<0)return;
+    if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();finish();}
+    if(e.key==='Tab'){
+      const buttons=[close,skip,prev,next].filter(b=>!b.hidden);
+      const n=buttons.indexOf(document.activeElement);
+      if(n<0||(e.shiftKey&&n===0)||(!e.shiftKey&&n===buttons.length-1)){e.preventDefault();buttons[e.shiftKey?buttons.length-1:0].focus();}
+    }
+  },true);
+  dialog.addEventListener('cancel',e=>{if(index>=0&&demoOpen){e.preventDefault();finish();}});
+  window.addEventListener('resize',schedulePosition);
+  window.addEventListener('scroll',schedulePosition,true);
+  window.visualViewport?.addEventListener('resize',schedulePosition);
+  const map=document.querySelector('.campus-map');
+  map.addEventListener('load',schedulePosition);
+  function autoStart(){let seen=false;try{seen=localStorage.getItem(key)==='true';}catch{}if(!seen)start();}
+  if(document.readyState==='complete')autoStart();else window.addEventListener('load',autoStart,{once:true});
+})();
+
