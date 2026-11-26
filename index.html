@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#084bd1" />
   <meta name="description" content="가톨릭대학교 캠퍼스 안내 지도. 지도에서 건물을 선택하고 층별 도면을 확인하세요." />
   <title>가대 ZIP | 캠퍼스 안내</title>
-  <link rel="stylesheet" href="./styles.css?v=2" />
-<script src="./app.js?v=2" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=3" />
+<script src="./app.js?v=3" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -39,7 +39,16 @@
         </div>
         <section class="shortcut-panel" aria-label="캠퍼스 지름길">
           <div id="shortcut-summary" hidden><strong id="shortcut-current"></strong><p id="shortcut-status" role="status"></p><div class="shortcut-actions"><button type="button" id="shortcut-replay">다시 보기</button><button type="button" id="shortcut-clear">경로 지우기</button></div></div>
-          <button type="button" id="shortcut-open" class="shortcut-open" aria-haspopup="dialog"><span aria-hidden="true">↝</span><span><small>CAMPUS SHORTCUT</small><strong>캠퍼스 지름길 안내</strong><small>고양이와 함께 빠른 길과 편한 길을 찾아보세요!</small></span><span aria-hidden="true">›</span></button>
+          <div id="shortcut-card" class="shortcut-card">
+            <svg class="shortcut-peek" viewBox="0 0 92 56" aria-hidden="true"><ellipse cx="46" cy="6" rx="15" ry="4" fill="none" stroke="#084bd1" stroke-width="2.5"/><path d="M10 56V30L20 14L32 26H60L72 14L82 30V56Z" fill="#fff" stroke="#084bd1" stroke-width="2.5" stroke-linejoin="round"/><path d="M17 26L21 19L26 25M66 25L71 19L75 26" fill="#f7b6c8"/><path d="M30 43q5-6 10 0M52 43q5-6 10 0" fill="none" stroke="#084bd1" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="24" cy="50" rx="5" ry="3" fill="#f7b6c8"/><ellipse cx="68" cy="50" rx="5" ry="3" fill="#f7b6c8"/></svg>
+            <svg class="shortcut-paws" viewBox="0 0 30 16" aria-hidden="true"><circle cx="6" cy="8" r="6" fill="#fff" stroke="#084bd1" stroke-width="2"/><circle cx="24" cy="8" r="6" fill="#fff" stroke="#084bd1" stroke-width="2"/></svg>
+            <span class="overline">CAMPUS SHORTCUT</span>
+            <h3 class="shortcut-card-title">캠퍼스 지름길 안내</h3>
+            <div class="shortcut-picks">
+              <button type="button" class="shortcut-pick" data-shortcut-type="fast" aria-haspopup="dialog"><svg viewBox="0 0 44 40" aria-hidden="true"><path d="M6 36V14L12 2L19 10H27L34 2L40 14V36Z" fill="#fff3d1" stroke="#084bd1" stroke-width="2.2" stroke-linejoin="round"/><path d="M13 21l5 2-5 2M31 21l-5 2 5 2" fill="none" stroke="#084bd1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 30q3 3 6 0" fill="none" stroke="#084bd1" stroke-width="2" stroke-linecap="round"/><path d="M0 16h4M0 24h3" stroke="#084bd1" stroke-width="2" stroke-linecap="round"/></svg><span class="shortcut-pick-text"><strong>빠른 길</strong><small>가장 짧은 경로</small></span><span class="shortcut-pick-arrow" aria-hidden="true">›</span></button>
+              <button type="button" class="shortcut-pick" data-shortcut-type="easy" aria-haspopup="dialog"><svg viewBox="0 0 44 40" aria-hidden="true"><path d="M6 36V14L12 2L19 10H27L34 2L40 14V36Z" fill="#eaf6ed" stroke="#084bd1" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 22q4 3 8 0M24 22q4 3 8 0" fill="none" stroke="#084bd1" stroke-width="2" stroke-linecap="round"/><path d="M19 30q3 2 6 0" fill="none" stroke="#084bd1" stroke-width="2" stroke-linecap="round"/><path d="M33 4h5l-5 6h5" fill="none" stroke="#084bd1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="shortcut-pick-text"><strong>편한 길</strong><small>엘리베이터 이용 경로</small></span><span class="shortcut-pick-arrow" aria-hidden="true">›</span></button>
+            </div>
+          </div>
         </section>
       </section>
       <aside class="directory-panel" aria-labelledby="directory-title">
@@ -73,7 +82,7 @@
     <div class="dialog-content" id="facility-list"></div>
   </dialog>
   <dialog id="shortcut-dialog" class="building-dialog shortcut-dialog" aria-labelledby="shortcut-title">
-    <div class="dialog-topbar"><div class="dialog-title-group"><span class="dialog-eyebrow">CAMPUS SHORTCUT</span><h2 id="shortcut-title">캠퍼스 지름길 안내</h2><p>출발지: 학교 정문</p></div><button class="close-btn" id="shortcut-close" type="button" aria-label="닫기">×</button></div>
+    <div class="dialog-topbar"><div class="dialog-title-group"><span class="dialog-eyebrow">CAMPUS SHORTCUT</span><h2 id="shortcut-title">캠퍼스 지름길 안내</h2><p>출발지: 학교 정문 · 목적지를 선택해 주세요</p></div><button class="close-btn" id="shortcut-close" type="button" aria-label="닫기">×</button></div>
     <div class="dialog-content" id="shortcut-list"></div>
   </dialog>
   <div id="campus-tour" class="campus-tour" role="dialog" aria-modal="true" aria-labelledby="tour-title" aria-describedby="tour-description" hidden>
