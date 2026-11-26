@@ -555,6 +555,23 @@ function openFacility(key) {
   }
   facilityTitle.textContent = `${category.title} 안내`;
   facilityList.replaceChildren();
+  if (key === 'cup-return') {
+  const mapCard = document.createElement('section');
+  mapCard.className = 'facility-overview';
+
+  const mapTitle = document.createElement('h3');
+  mapTitle.textContent = '캠퍼스컵 전체 위치 안내';
+
+  const mapImage = document.createElement('img');
+  mapImage.src = './assets/facilities/campus-cup-map.webp';
+  mapImage.alt = '캠퍼스컵 전체 반납함 위치 지도';
+
+  const mapNotice = document.createElement('p');
+  mapNotice.textContent = '2025.10.01 기준';
+
+  mapCard.append(mapTitle, mapImage, mapNotice);
+  facilityList.appendChild(mapCard);
+}
   if (!category.items.length) {
     const message = document.createElement('p');
     message.className = 'facility-empty';
