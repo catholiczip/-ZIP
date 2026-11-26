@@ -29,7 +29,7 @@
     <div class="workspace">
       <section class="map-panel" aria-labelledby="map-title">
         <div class="panel-heading"><div><span class="overline">01 / CAMPUS</span><h2 id="map-title">캠퍼스 전체 지도</h2></div></div>
-        <div class="map-stage" id="map-stage"><img class="campus-map" src="./assets/campus-map.jpg" alt="가톨릭대학교 캠퍼스 건물 배치도. 각 번호는 클릭하여 자세한 정보를 볼 수 있습니다." draggable="false" /><div id="map-hotspots" class="hotspots"></div><div id="walking-cat" class="walking-cat" aria-hidden="true"><img src="./assets/campus-cat_left.png" alt="" draggable="false" /></div>
+        <div class="map-stage" id="map-stage"><img class="campus-map" src="./assets/campus-map.jpg" alt="가톨릭대학교 캠퍼스 건물 배치도. 각 번호는 클릭하여 자세한 정보를 볼 수 있습니다." draggable="false" /><svg id="shortcut-layer" class="shortcut-layer" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline id="shortcut-line" fill="none"/><g id="shortcut-markers"></g></svg><div id="shortcut-note" class="shortcut-note" hidden></div><div id="map-hotspots" class="hotspots"></div><div id="walking-cat" class="walking-cat" aria-hidden="true"><img src="./assets/campus-cat_left.png" alt="" draggable="false" /></div>
           <div class="facility-menu" role="group" aria-label="교내 편의시설">
             <button type="button" class="facility-btn" data-facility="cafe" aria-haspopup="dialog"><img src="./assets/facility-icons/cafe.webp" alt="" /><span>카페</span></button>
             <button type="button" class="facility-btn" data-facility="restaurant" aria-haspopup="dialog"><img src="./assets/facility-icons/restaurant.webp" alt="" /><span>식당</span></button>
@@ -37,6 +37,10 @@
             <button type="button" class="facility-btn" data-facility="convenience" aria-haspopup="dialog"><img src="./assets/facility-icons/convenience.webp" alt="" /><span>편의점</span></button>
           </div>
         </div>
+        <section class="shortcut-panel" aria-label="캠퍼스 지름길">
+          <div id="shortcut-summary" hidden><strong id="shortcut-current"></strong><p id="shortcut-status" role="status"></p><div class="shortcut-actions"><button type="button" id="shortcut-replay">다시 보기</button><button type="button" id="shortcut-clear">경로 지우기</button></div></div>
+          <button type="button" id="shortcut-open" class="shortcut-open" aria-haspopup="dialog"><span aria-hidden="true">↝</span><span><small>CAMPUS SHORTCUT</small><strong>캠퍼스 지름길 안내</strong><small>고양이와 함께 빠른 길과 편한 길을 찾아보세요!</small></span><span aria-hidden="true">›</span></button>
+        </section>
       </section>
       <aside class="directory-panel" aria-labelledby="directory-title">
         <div class="panel-heading directory-heading"><div><span class="overline">02 / DIRECTORY</span><h2 id="directory-title">건물 찾기</h2></div></div>
@@ -67,6 +71,10 @@
   <dialog id="facility-dialog" class="building-dialog facility-dialog" aria-labelledby="facility-title">
     <div class="dialog-topbar"><div class="dialog-title-group"><span class="dialog-eyebrow">CAMPUS FACILITIES</span><h2 id="facility-title"></h2></div><button class="close-btn" id="close-facility-dialog" type="button" aria-label="닫기">×</button></div>
     <div class="dialog-content" id="facility-list"></div>
+  </dialog>
+  <dialog id="shortcut-dialog" class="building-dialog shortcut-dialog" aria-labelledby="shortcut-title">
+    <div class="dialog-topbar"><div class="dialog-title-group"><span class="dialog-eyebrow">CAMPUS SHORTCUT</span><h2 id="shortcut-title">캠퍼스 지름길 안내</h2><p>출발지: 학교 정문</p></div><button class="close-btn" id="shortcut-close" type="button" aria-label="닫기">×</button></div>
+    <div class="dialog-content" id="shortcut-list"></div>
   </dialog>
   <div id="campus-tour" class="campus-tour" role="dialog" aria-modal="true" aria-labelledby="tour-title" aria-describedby="tour-description" hidden>
     <div id="tour-spotlight" class="tour-spotlight" aria-hidden="true"></div>
