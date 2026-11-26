@@ -218,3 +218,19 @@
   color: #687791;
   text-align: right;
 }
+
+/* Campus shortcut overlay and controls */
+.shortcut-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible;color:#1453cf}
+.shortcut-layer[data-type="easy"]{color:#25834e}
+#shortcut-line{stroke:currentColor;stroke-width:4px;stroke-dasharray:7 5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+#shortcut-markers circle{fill:currentColor;stroke:white;stroke-width:1.5px;vector-effect:non-scaling-stroke}
+.walking-cat.shortcut-walking{transition:none}
+.shortcut-note{position:absolute;z-index:5;transform:translate(-50%,-110%);background:#fff;color:#1453cf;border:1px solid #c9d9f9;border-radius:8px;padding:6px 9px;font-size:11px;font-weight:800;line-height:1.4;white-space:nowrap;pointer-events:none}
+.shortcut-panel{padding:16px 20px 20px;background:#fff;display:grid;gap:12px}
+.shortcut-open{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:1px solid #dce7fc;background:#edf3ff;border-radius:14px;padding:15px;color:#084bd1}
+.shortcut-open>span:first-child{font-size:32px;font-weight:900}.shortcut-open>span:nth-child(2){display:grid;gap:4px;flex:1;min-width:0}.shortcut-open strong{font-size:18px}.shortcut-open small{font-size:11px;line-height:1.5;color:#536a94}.shortcut-open>span:last-child{font-size:24px}
+.shortcut-dialog{width:min(540px,calc(100vw - 24px));color:#18243e}
+.shortcut-choice{border:1px solid #e2eafa;border-radius:14px;padding:14px;margin-bottom:12px}.shortcut-choice:last-child{margin-bottom:0}.shortcut-choice h3{font-size:16px;margin:0 0 12px}.shortcut-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.shortcut-options button,.shortcut-actions button{border:1px solid #dbe7fb;border-radius:9px;background:#edf3ff;color:#084bd1;font-weight:800;padding:11px}.shortcut-options button[data-type="easy"]{background:#eaf6ed;color:#216e47;border-color:#d1e8d9}
+#shortcut-summary{background:#f5f8ff;border-radius:12px;padding:12px;line-height:1.5}#shortcut-summary p{font-size:12px;color:#687791;margin:5px 0 10px}.shortcut-actions{display:flex;gap:8px;flex-wrap:wrap}.shortcut-actions button{font-size:12px}
+@media(max-width:540px){.shortcut-panel{padding:12px}.shortcut-open{padding:12px;gap:8px}.shortcut-open strong{font-size:16px}.shortcut-open small{font-size:10px}#shortcut-line{stroke-width:3px}}
+
