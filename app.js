@@ -1352,6 +1352,7 @@ const shortcutNote = document.querySelector('#shortcut-note');
 const shortcutSummary = document.querySelector('#shortcut-summary');
 const shortcutStatus = document.querySelector('#shortcut-status');
 const shortcutStage = document.querySelector('#map-stage');
+const shortcutTypeLabel = { fast: '빠른 길', easy: '편한 길' };
 let activeShortcut = null, shortcutFrame = 0;
 function setShortcutCat(x,y) {
   walkingCat.classList.toggle('facing-right', x > catPosition.x || (x === catPosition.x && walkingCat.classList.contains('facing-right')));
@@ -1372,7 +1373,7 @@ function playShortcut(route) {
   activeShortcut = route;
   if (shortcutDialog.open) shortcutDialog.close();
   const name = buildings.find(b=>b.id===route.buildingId).alias;
-  const type = route.type==='easy'?'편한 길':'빠른 길';
+  const type = shortcutTypeLabel[route.type];
   shortcutSummary.hidden=false;
   document.querySelector('#shortcut-current').textContent=`정문 → ${name} · ${type}`;
   shortcutStatus.textContent='고양이가 경로를 안내하고 있어요.';
@@ -1407,16 +1408,34 @@ function playShortcut(route) {
   }
   shortcutFrame=requestAnimationFrame(tick);
 }
+// The card picks the route type; the dialog lists every destination that has a route of that type.
 const shortcutList=document.querySelector('#shortcut-list');
-[7,15,17].forEach(id=>{
-  const b=buildings.find(b=>b.id===id), group=document.createElement('section');group.className='shortcut-choice';
-  const title=document.createElement('h3');title.textContent=b.alias;group.appendChild(title);
-  const buttons=document.createElement('div');buttons.className='shortcut-options';
-  shortcutRoutes.filter(r=>r.buildingId===id).forEach(r=>{
-    const btn=document.createElement('button');btn.type='button';btn.dataset.type=r.type;btn.textContent=r.type==='easy'?'편한 길':'빠른 길';btn.addEventListener('click',()=>playShortcut(r));buttons.appendChild(btn);
-  });group.appendChild(buttons);shortcutList.appendChild(group);
-});
-document.querySelector('#shortcut-open').addEventListener('click',()=>{clearShortcut();if(pendingArrival!==null){clearTimeout(pendingArrival);pendingArrival=null;walkingCat.classList.remove('is-moving');}shortcutDialog.showModal();});
+const shortcutTitle=document.querySelector('#shortcut-title');
+function renderShortcutList(type){
+  shortcutList.replaceChildren();
+  shortcutList.dataset.type=type;
+  shortcutRoutes.filter(r=>r.type===type).forEach(r=>{
+    const b=buildings.find(b=>b.id===r.buildingId);
+    const btn=document.createElement('button');btn.type='button';btn.className='shortcut-destination';
+    const label=document.createElement('span');
+    const name=document.createElement('strong');name.textContent=b.alias||b.name;
+    const sub=document.createElement('small');sub.textContent=`${b.id}번 · ${b.name}`;
+    label.append(name,sub);
+    const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent='›';
+    btn.append(label,arrow);
+    btn.addEventListener('click',()=>playShortcut(r));
+    shortcutList.appendChild(btn);
+  });
+}
+function openShortcutDialog(type){
+  if(!shortcutTypeLabel[type])return;
+  clearShortcut();
+  if(pendingArrival!==null){clearTimeout(pendingArrival);pendingArrival=null;walkingCat.classList.remove('is-moving');}
+  shortcutTitle.textContent=`${shortcutTypeLabel[type]} 안내`;
+  renderShortcutList(type);
+  shortcutDialog.showModal();
+}
+document.querySelectorAll('[data-shortcut-type]').forEach(btn=>btn.addEventListener('click',()=>openShortcutDialog(btn.dataset.shortcutType)));
 document.querySelector('#shortcut-close').addEventListener('click',()=>shortcutDialog.close());
 shortcutDialog.addEventListener('click',e=>{if(e.target===shortcutDialog)shortcutDialog.close();});
 document.querySelector('#shortcut-replay').addEventListener('click',()=>{if(activeShortcut)playShortcut(activeShortcut);});
@@ -1438,7 +1457,7 @@ document.querySelector('#shortcut-clear').addEventListener('click',clearShortcut
     { target:'.map-hotspot:not(:disabled)', title:'캠퍼스 전체 지도', text:'지도에 표시된 건물 번호를 누르면 고양이가 이동하고, 이용 가능한 건물의 층별 도면이 열려요.' },
     { target:'#floor-tabs', demo:true, title:'층별 도면 확인', text:'팝업 상단에서 원하는 층을 선택하면 강의실과 시설 위치를 확인할 수 있어요. 도면 확대도 가능해요.' },
     { target:'.facility-menu', title:'교내 편의시설', text:'지도 아래 아이콘을 누르면 카페, 식당, 다회용컵 반납함, 편의점의 사진과 위치, 등록된 운영시간을 확인할 수 있어요.' },
-    { target:'#shortcut-open', title:'캠퍼스 지름길', text:'목적지와 편한 길 또는 빠른 길을 선택하면 지도 위에서 고양이가 경로를 안내해요.' },
+    { target:'#shortcut-card', title:'캠퍼스 지름길', text:'빠른 길 또는 편한 길 고양이를 고른 뒤 목적지를 선택하면 지도 위에서 고양이가 경로를 안내해요.' },
     { target:'.search-field', title:'건물 검색', text:'건물 이름이나 약어를 입력하면 원하는 건물을 빠르게 찾을 수 있어요.' },
     { target:'.directory-item:not(:disabled)', title:'건물 목록', text:'건물 목록에서도 원하는 건물을 선택할 수 있어요. 안내가 다시 필요하면 상단의 ? 버튼을 눌러 주세요!' }
   ];
