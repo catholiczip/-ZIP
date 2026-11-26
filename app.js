@@ -442,7 +442,7 @@ const facilityCategories = {
     "image": "./assets/facilities/cup-return-03.webp"
   },
   {
-    "name": "콘서트홀 (C관)",
+    "name": "콘서트홀 (CH관)",
     "location": "1층 CH108 음악과 학과사무실 옆",
     "image": "./assets/facilities/cup-return-04.webp"
   },
@@ -560,11 +560,11 @@ function openFacility(key) {
   mapCard.className = 'facility-overview';
 
   const mapTitle = document.createElement('h3');
-  mapTitle.textContent = '캠퍼스컵 전체 위치 안내';
+  mapTitle.textContent = '반납함 전체 위치 지도';
 
   const mapImage = document.createElement('img');
   mapImage.src = './assets/facilities/campus-cup-map.webp';
-  mapImage.alt = '캠퍼스컵 전체 반납함 위치 지도';
+  mapImage.alt = '캡퍼스컵 전체 반납함 위치 지도';
 
   const mapNotice = document.createElement('p');
   mapNotice.textContent = '2025.10.01 기준';
