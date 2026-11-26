@@ -105,7 +105,7 @@ const buildings = [
   { id:15, name:'베리타스관', alias:'중앙도서관', x:63.2, y:26.9, planKey:'library' },
   { id:16, name:'SH관', alias:'성심관', x:82.1, y:17.9, planKey:'seongsim' },
   { id:17, name:'NP관', alias:'정진석 추기경 약학관', x:67.3, y:16.7, planKey:'pharmacy' },
-  { id:18, name:'C관', alias:'콘서트홀', x:86.0, y:29.7, planKey:'concert' },
+  { id:18, name:'CH관', alias:'콘서트홀', x:86.0, y:29.7, planKey:'concert' },
   { id:19, name:'대운동장', x:75.8, y:41.3 },
   { id:20, name:'바오로관(사제관)', x:21.0, y:34.7 },
   { id:21, name:'국제교류관', x:24.3, y:30.0 },
