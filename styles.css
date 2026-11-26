@@ -38,7 +38,7 @@
 .directory-item:disabled:hover {background:white;border-radius:0}
 .directory-item:disabled .item-arrow {visibility:hidden}
 
-/* 미카엘관 교수연구동: 평면도 미제공 층의 텍스트 안내 */
+/* 誘몄뭅�섍� 援먯닔�곌뎄��: �됰㈃�� 誘몄젣怨� 痢듭쓽 �띿뒪�� �덈궡 */
 .floor-image[hidden], .floor-placeholder[hidden], .floor-info-card[hidden], .viewer-toolbar[hidden] {display:none !important}
 .floor-info-card {box-sizing:border-box;max-width:570px;width:100%;margin:30px auto;padding:36px 32px;background:#fff;border:1px solid #d9e6fa;border-radius:18px;box-shadow:0 8px 26px #1b4d9a12;text-align:left}
 .floor-info-symbol {display:grid;place-items:center;width:54px;height:54px;border-radius:14px;background:#eaf3ff;color:#145bd3;font-size:34px;line-height:1;margin-bottom:18px}
@@ -187,3 +187,34 @@
 #tour-skip {background:none;color:#687791;padding-inline:4px;}
 #tour-next {background:#084bd1;color:white;}
 @media(max-width:540px){.tour-help{width:30px;height:30px;font-size:17px}.tour-card{padding:16px}.tour-card h2{font-size:18px}.tour-card p{font-size:13px}.tour-actions{gap:5px}}
+
+/* Campus cup overview: fit the full map inside the facility popup. */
+.facility-dialog .facility-overview {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 0 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e5ebf6;
+}
+.facility-dialog .facility-overview h3 {
+  margin: 0 0 15px;
+  font-size: 18px;
+  color: #18243e;
+}
+.facility-dialog .facility-overview img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+.facility-dialog .facility-overview p {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #687791;
+  text-align: right;
+}
