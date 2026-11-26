@@ -159,6 +159,7 @@ let catPosition = { x: 20, y: 72 };
 let pendingArrival = null;
 function visitBuilding(b) {
   if (b.nonInteractive || b.directoryOnly) return;
+  clearShortcut();
   if (pendingArrival !== null) {
     clearTimeout(pendingArrival);
     pendingArrival = null;
@@ -547,6 +548,7 @@ const facilityList = document.querySelector('#facility-list');
 function openFacility(key) {
   const category = facilityCategories[key];
   if (!category) return;
+  clearShortcut();
   // Prevent a previously scheduled building popup from opening over this dialog.
   if (pendingArrival !== null) {
     clearTimeout(pendingArrival);
@@ -622,6 +624,804 @@ facilityDialog.addEventListener('click', event => {
   if (event.target === facilityDialog) facilityDialog.close();
 });
 
+// Campus shortcuts: percentage coordinates on the full, uncropped map.
+const shortcutRoutes = [
+  {
+    "id": "n-easy",
+    "buildingId": 7,
+    "type": "easy",
+    "points": [
+      [
+        20.684,
+        67.682
+      ],
+      [
+        22.875,
+        66.892
+      ],
+      [
+        24.102,
+        64.766
+      ],
+      [
+        24.628,
+        61.667
+      ],
+      [
+        24.628,
+        57.901
+      ],
+      [
+        25.066,
+        55.349
+      ],
+      [
+        23.926,
+        53.648
+      ],
+      [
+        22.962,
+        52.007
+      ],
+      [
+        23.05,
+        50.488
+      ],
+      [
+        24.102,
+        49.03
+      ],
+      [
+        25.942,
+        48.119
+      ],
+      [
+        28.571,
+        47.633
+      ],
+      [
+        32.077,
+        47.815
+      ],
+      [
+        35.408,
+        48.362
+      ],
+      [
+        36.897,
+        49.03
+      ],
+      [
+        36.985,
+        49.942
+      ],
+      [
+        38.124,
+        49.942
+      ],
+      [
+        38.475,
+        46.721
+      ]
+    ],
+    "stops": [
+      5,
+      15
+    ]
+  },
+  {
+    "id": "n-fast",
+    "buildingId": 7,
+    "type": "fast",
+    "points": [
+      [
+        21.781,
+        66.694
+      ],
+      [
+        23.633,
+        65.41
+      ],
+      [
+        24.25,
+        63.332
+      ],
+      [
+        23.986,
+        61.742
+      ],
+      [
+        22.31,
+        61.009
+      ],
+      [
+        20.018,
+        60.092
+      ],
+      [
+        19.841,
+        58.869
+      ],
+      [
+        20.547,
+        55.018
+      ],
+      [
+        21.693,
+        52.328
+      ],
+      [
+        23.28,
+        49.333
+      ],
+      [
+        24.868,
+        48.355
+      ],
+      [
+        27.866,
+        48.232
+      ],
+      [
+        33.686,
+        48.355
+      ],
+      [
+        36.772,
+        48.416
+      ],
+      [
+        37.743,
+        47.927
+      ],
+      [
+        38.007,
+        46.46
+      ]
+    ],
+    "stops": []
+  },
+  {
+    "id": "l-easy",
+    "buildingId": 15,
+    "type": "easy",
+    "points": [
+      [
+        21.574,
+        66.994
+      ],
+      [
+        22.989,
+        65.829
+      ],
+      [
+        23.077,
+        62.274
+      ],
+      [
+        23.342,
+        58.596
+      ],
+      [
+        23.784,
+        55.899
+      ],
+      [
+        23.431,
+        54.612
+      ],
+      [
+        22.546,
+        53.08
+      ],
+      [
+        22.812,
+        51.241
+      ],
+      [
+        23.077,
+        49.28
+      ],
+      [
+        23.607,
+        48.422
+      ],
+      [
+        26.614,
+        48.238
+      ],
+      [
+        30.858,
+        48.299
+      ],
+      [
+        35.013,
+        48.606
+      ],
+      [
+        36.782,
+        48.973
+      ],
+      [
+        36.782,
+        50.199
+      ],
+      [
+        37.577,
+        50.138
+      ],
+      [
+        37.931,
+        47.564
+      ],
+      [
+        38.373,
+        43.273
+      ],
+      [
+        38.638,
+        39.166
+      ],
+      [
+        39.434,
+        35.611
+      ],
+      [
+        40.141,
+        32.302
+      ],
+      [
+        40.141,
+        30.095
+      ],
+      [
+        40.672,
+        28.869
+      ],
+      [
+        41.998,
+        28.563
+      ],
+      [
+        46.773,
+        28.685
+      ],
+      [
+        50.928,
+        28.93
+      ],
+      [
+        54.996,
+        29.421
+      ],
+      [
+        58.886,
+        29.789
+      ],
+      [
+        62.157,
+        29.789
+      ],
+      [
+        62.334,
+        28.501
+      ]
+    ],
+    "stops": [
+      4,
+      15
+    ]
+  },
+  {
+    "id": "l-fast",
+    "buildingId": 15,
+    "type": "fast",
+    "points": [
+      [
+        22.703,
+        67.302
+      ],
+      [
+        26.678,
+        65.832
+      ],
+      [
+        31.36,
+        64.362
+      ],
+      [
+        36.131,
+        62.77
+      ],
+      [
+        40.283,
+        61.484
+      ],
+      [
+        42.491,
+        59.647
+      ],
+      [
+        44.523,
+        57.626
+      ],
+      [
+        46.201,
+        54.993
+      ],
+      [
+        48.057,
+        52.115
+      ],
+      [
+        50.442,
+        49.542
+      ],
+      [
+        52.473,
+        47.522
+      ],
+      [
+        54.505,
+        44.827
+      ],
+      [
+        56.802,
+        42.01
+      ],
+      [
+        58.746,
+        40.112
+      ],
+      [
+        61.396,
+        38.581
+      ],
+      [
+        62.898,
+        37.662
+      ],
+      [
+        62.898,
+        36.56
+      ],
+      [
+        62.014,
+        33.253
+      ],
+      [
+        62.809,
+        28.721
+      ]
+    ],
+    "stops": []
+  },
+  {
+    "id": "np-easy",
+    "buildingId": 17,
+    "type": "easy",
+    "points": [
+      [
+        21.15,
+        66.869
+      ],
+      [
+        23.628,
+        66.01
+      ],
+      [
+        24.513,
+        64.538
+      ],
+      [
+        24.69,
+        61.716
+      ],
+      [
+        24.425,
+        57.421
+      ],
+      [
+        24.336,
+        54.906
+      ],
+      [
+        22.92,
+        53.127
+      ],
+      [
+        21.947,
+        51.471
+      ],
+      [
+        22.035,
+        49.876
+      ],
+      [
+        23.54,
+        48.833
+      ],
+      [
+        26.372,
+        48.219
+      ],
+      [
+        29.646,
+        48.219
+      ],
+      [
+        34.071,
+        48.403
+      ],
+      [
+        36.814,
+        48.587
+      ],
+      [
+        37.611,
+        49.385
+      ],
+      [
+        37.522,
+        50.55
+      ],
+      [
+        38.319,
+        50.55
+      ],
+      [
+        38.673,
+        48.342
+      ],
+      [
+        38.407,
+        45.643
+      ],
+      [
+        38.584,
+        42.698
+      ],
+      [
+        38.673,
+        39.262
+      ],
+      [
+        39.735,
+        36.87
+      ],
+      [
+        40.265,
+        33.189
+      ],
+      [
+        40.619,
+        30.367
+      ],
+      [
+        41.593,
+        28.895
+      ],
+      [
+        42.92,
+        28.404
+      ],
+      [
+        47.345,
+        28.404
+      ],
+      [
+        52.212,
+        28.711
+      ],
+      [
+        57.522,
+        29.263
+      ],
+      [
+        61.504,
+        29.876
+      ],
+      [
+        66.726,
+        30.122
+      ],
+      [
+        72.212,
+        30.306
+      ],
+      [
+        74.071,
+        29.631
+      ],
+      [
+        74.425,
+        28.281
+      ],
+      [
+        74.248,
+        26.993
+      ],
+      [
+        73.186,
+        26.134
+      ],
+      [
+        71.327,
+        25.152
+      ],
+      [
+        70.531,
+        24.232
+      ],
+      [
+        70.619,
+        21.41
+      ],
+      [
+        69.912,
+        20.92
+      ],
+      [
+        68.496,
+        20.613
+      ]
+    ],
+    "stops": [
+      5,
+      15
+    ]
+  },
+  {
+    "id": "np-fast",
+    "buildingId": 17,
+    "type": "fast",
+    "points": [
+      [
+        21.947,
+        67.176
+      ],
+      [
+        23.805,
+        65.458
+      ],
+      [
+        24.159,
+        63.004
+      ],
+      [
+        23.805,
+        61.593
+      ],
+      [
+        22.566,
+        60.673
+      ],
+      [
+        20.619,
+        60.121
+      ],
+      [
+        20.088,
+        59.262
+      ],
+      [
+        20.354,
+        57.053
+      ],
+      [
+        20.973,
+        54.538
+      ],
+      [
+        21.681,
+        52.145
+      ],
+      [
+        22.389,
+        49.691
+      ],
+      [
+        23.894,
+        48.771
+      ],
+      [
+        26.549,
+        48.219
+      ],
+      [
+        29.469,
+        48.158
+      ],
+      [
+        33.451,
+        48.403
+      ],
+      [
+        37.434,
+        48.465
+      ],
+      [
+        38.584,
+        48.096
+      ],
+      [
+        38.673,
+        46.808
+      ],
+      [
+        38.496,
+        44.109
+      ],
+      [
+        38.673,
+        41.532
+      ],
+      [
+        38.761,
+        39.078
+      ],
+      [
+        39.646,
+        36.563
+      ],
+      [
+        40.265,
+        33.312
+      ],
+      [
+        40.619,
+        30.428
+      ],
+      [
+        41.593,
+        28.895
+      ],
+      [
+        42.832,
+        28.404
+      ],
+      [
+        47.257,
+        28.404
+      ],
+      [
+        52.124,
+        28.711
+      ],
+      [
+        57.434,
+        29.324
+      ],
+      [
+        61.416,
+        29.815
+      ],
+      [
+        66.726,
+        30.06
+      ],
+      [
+        72.124,
+        30.306
+      ],
+      [
+        73.894,
+        29.631
+      ],
+      [
+        74.336,
+        28.22
+      ],
+      [
+        74.159,
+        26.993
+      ],
+      [
+        73.097,
+        26.134
+      ],
+      [
+        71.239,
+        25.152
+      ],
+      [
+        70.442,
+        24.232
+      ],
+      [
+        70.531,
+        21.41
+      ],
+      [
+        69.823,
+        20.92
+      ],
+      [
+        68.407,
+        20.613
+      ]
+    ],
+    "stops": []
+  }
+];
+const shortcutDialog = document.querySelector('#shortcut-dialog');
+const shortcutLayer = document.querySelector('#shortcut-layer');
+const shortcutLine = document.querySelector('#shortcut-line');
+const shortcutMarkers = document.querySelector('#shortcut-markers');
+const shortcutNote = document.querySelector('#shortcut-note');
+const shortcutSummary = document.querySelector('#shortcut-summary');
+const shortcutStatus = document.querySelector('#shortcut-status');
+const shortcutStage = document.querySelector('#map-stage');
+let activeShortcut = null, shortcutFrame = 0;
+function setShortcutCat(x,y) {
+  walkingCat.classList.toggle('facing-right', x > catPosition.x || (x === catPosition.x && walkingCat.classList.contains('facing-right')));
+  walkingCat.style.left = `${x}%`; walkingCat.style.top = `${y}%`;
+  catPosition = {x,y};
+}
+function clearShortcut() {
+  if (!activeShortcut) return;
+  cancelAnimationFrame(shortcutFrame); shortcutFrame = 0;
+  activeShortcut = null;
+  walkingCat.classList.remove('shortcut-walking','is-moving');
+  shortcutLine.removeAttribute('points'); shortcutMarkers.replaceChildren();
+  shortcutNote.hidden = true; shortcutSummary.hidden = true;
+}
+function playShortcut(route) {
+  clearShortcut();
+  if (pendingArrival !== null) { clearTimeout(pendingArrival); pendingArrival = null; }
+  activeShortcut = route;
+  if (shortcutDialog.open) shortcutDialog.close();
+  const name = buildings.find(b=>b.id===route.buildingId).alias;
+  const type = route.type==='easy'?'편한 길':'빠른 길';
+  shortcutSummary.hidden=false;
+  document.querySelector('#shortcut-current').textContent=`정문 → ${name} · ${type}`;
+  shortcutStatus.textContent='고양이가 경로를 안내하고 있어요.';
+  shortcutLayer.dataset.type=route.type;
+  shortcutLine.setAttribute('points',route.points.map(p=>p.join(',')).join(' '));
+  const ns='http://www.w3.org/2000/svg';
+  [0,...route.stops,route.points.length-1].forEach(i=>{
+    const circle=document.createElementNS(ns,'circle');
+    circle.setAttribute('cx',route.points[i][0]);circle.setAttribute('cy',route.points[i][1]);circle.setAttribute('r','0.65');shortcutMarkers.appendChild(circle);
+  });
+  walkingCat.classList.add('shortcut-walking');
+  setShortcutCat(...route.points[0]);
+  shortcutStage.scrollIntoView({block:'start',behavior:reduceMotion.matches?'instant':'smooth'});
+  function finish(){walkingCat.classList.remove('is-moving');shortcutNote.hidden=true;shortcutStatus.textContent=`${name} 도착!`;shortcutFrame=0;}
+  if(reduceMotion.matches){setShortcutCat(...route.points.at(-1));finish();return;}
+  walkingCat.classList.add('is-moving');
+  const pts=route.points, rect=shortcutStage.getBoundingClientRect();
+  const ratio=rect.height/Math.max(1,rect.width);
+  let segment=0,start=null,pauseUntil=0;
+  function tick(now){
+    if(activeShortcut!==route)return;
+    if(now<pauseUntil){shortcutFrame=requestAnimationFrame(tick);return;}
+    if(start===null){start=now;shortcutNote.hidden=true;walkingCat.classList.add('is-moving');}
+    const a=pts[segment],b=pts[segment+1];
+    const duration=Math.max(40,Math.hypot(b[0]-a[0],(b[1]-a[1])*ratio)*65);
+    const f=Math.min(1,(now-start)/duration);
+    setShortcutCat(a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f);
+    if(f===1){segment++;start=null;if(segment===pts.length-1){finish();return;}
+      if(route.stops.includes(segment)){pauseUntil=now+1000;walkingCat.classList.remove('is-moving');shortcutNote.textContent='엘리베이터 이용';shortcutNote.style.left=`${b[0]}%`;shortcutNote.style.top=`${b[1]}%`;shortcutNote.hidden=false;}
+    }
+    shortcutFrame=requestAnimationFrame(tick);
+  }
+  shortcutFrame=requestAnimationFrame(tick);
+}
+const shortcutList=document.querySelector('#shortcut-list');
+[7,15,17].forEach(id=>{
+  const b=buildings.find(b=>b.id===id), group=document.createElement('section');group.className='shortcut-choice';
+  const title=document.createElement('h3');title.textContent=b.alias;group.appendChild(title);
+  const buttons=document.createElement('div');buttons.className='shortcut-options';
+  shortcutRoutes.filter(r=>r.buildingId===id).forEach(r=>{
+    const btn=document.createElement('button');btn.type='button';btn.dataset.type=r.type;btn.textContent=r.type==='easy'?'편한 길':'빠른 길';btn.addEventListener('click',()=>playShortcut(r));buttons.appendChild(btn);
+  });group.appendChild(buttons);shortcutList.appendChild(group);
+});
+document.querySelector('#shortcut-open').addEventListener('click',()=>{clearShortcut();if(pendingArrival!==null){clearTimeout(pendingArrival);pendingArrival=null;walkingCat.classList.remove('is-moving');}shortcutDialog.showModal();});
+document.querySelector('#shortcut-close').addEventListener('click',()=>shortcutDialog.close());
+shortcutDialog.addEventListener('click',e=>{if(e.target===shortcutDialog)shortcutDialog.close();});
+document.querySelector('#shortcut-replay').addEventListener('click',()=>{if(activeShortcut)playShortcut(activeShortcut);});
+document.querySelector('#shortcut-clear').addEventListener('click',clearShortcut);
+
 // Campus onboarding: reuse the existing building dialog for the floor example.
 (() => {
   const root = document.querySelector('#campus-tour');
@@ -638,6 +1438,7 @@ facilityDialog.addEventListener('click', event => {
     { target:'.map-hotspot:not(:disabled)', title:'캠퍼스 전체 지도', text:'지도에 표시된 건물 번호를 누르면 고양이가 이동하고, 이용 가능한 건물의 층별 도면이 열려요.' },
     { target:'#floor-tabs', demo:true, title:'층별 도면 확인', text:'팝업 상단에서 원하는 층을 선택하면 강의실과 시설 위치를 확인할 수 있어요. 도면 확대도 가능해요.' },
     { target:'.facility-menu', title:'교내 편의시설', text:'지도 아래 아이콘을 누르면 카페, 식당, 다회용컵 반납함, 편의점의 사진과 위치, 등록된 운영시간을 확인할 수 있어요.' },
+    { target:'#shortcut-open', title:'캠퍼스 지름길', text:'목적지와 편한 길 또는 빠른 길을 선택하면 지도 위에서 고양이가 경로를 안내해요.' },
     { target:'.search-field', title:'건물 검색', text:'건물 이름이나 약어를 입력하면 원하는 건물을 빠르게 찾을 수 있어요.' },
     { target:'.directory-item:not(:disabled)', title:'건물 목록', text:'건물 목록에서도 원하는 건물을 선택할 수 있어요. 안내가 다시 필요하면 상단의 ? 버튼을 눌러 주세요!' }
   ];
@@ -697,7 +1498,8 @@ facilityDialog.addEventListener('click', event => {
     position(); schedulePosition(); next.focus({preventScroll:true});
   }
   function start() {
-    if(index>=0 || dialog.open || facilityDialog.open) return;
+    if(index>=0 || dialog.open || facilityDialog.open || shortcutDialog.open) return;
+    clearShortcut();
     if(pendingArrival!==null) {clearTimeout(pendingArrival);pendingArrival=null;walkingCat.classList.remove('is-moving');}
     oldFocus=document.activeElement;oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';
     show(0);
@@ -730,4 +1532,3 @@ facilityDialog.addEventListener('click', event => {
   function autoStart(){let seen=false;try{seen=localStorage.getItem(key)==='true';}catch{}if(!seen)start();}
   if(document.readyState==='complete')autoStart();else window.addEventListener('load',autoStart,{once:true});
 })();
-
