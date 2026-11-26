@@ -227,10 +227,23 @@
 .walking-cat.shortcut-walking{transition:none}
 .shortcut-note{position:absolute;z-index:5;transform:translate(-50%,-110%);background:#fff;color:#1453cf;border:1px solid #c9d9f9;border-radius:8px;padding:6px 9px;font-size:11px;font-weight:800;line-height:1.4;white-space:nowrap;pointer-events:none}
 .shortcut-panel{padding:16px 20px 20px;background:#fff;display:grid;gap:12px}
-.shortcut-open{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:1px solid #dce7fc;background:#edf3ff;border-radius:14px;padding:15px;color:#084bd1}
-.shortcut-open>span:first-child{font-size:32px;font-weight:900}.shortcut-open>span:nth-child(2){display:grid;gap:4px;flex:1;min-width:0}.shortcut-open strong{font-size:18px}.shortcut-open small{font-size:11px;line-height:1.5;color:#536a94}.shortcut-open>span:last-child{font-size:24px}
+.shortcut-card{position:relative;margin-top:38px;border:1px solid #dce7fc;background:#edf3ff;border-radius:18px;padding:16px;color:#084bd1}
+.shortcut-peek{position:absolute;right:26px;top:-46px;width:92px;height:56px;pointer-events:none}
+.shortcut-paws{position:absolute;right:57px;top:-6px;width:30px;height:16px;pointer-events:none}
+.shortcut-card-title{margin:4px 0 14px;font-size:19px;font-weight:800;letter-spacing:-.6px;color:#084bd1}
+.shortcut-picks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shortcut-pick{display:flex;align-items:center;gap:10px;min-width:0;text-align:left;background:#fff;border:1px solid #dce7fc;border-radius:14px;padding:12px;color:#084bd1;transition:transform .16s,border-color .16s}
+.shortcut-pick svg{flex-shrink:0;width:44px;height:40px}
+.shortcut-pick-text{display:grid;gap:2px;flex:1;min-width:0}.shortcut-pick-text strong{font-size:15px;font-weight:800}.shortcut-pick-text small{font-size:11px;line-height:1.4;color:#536a94;word-break:keep-all}
+.shortcut-pick-arrow{font-size:20px;color:#7990bb}
+.shortcut-pick[data-shortcut-type="easy"]{color:#216e47}
+@media(hover:hover){.shortcut-pick:hover{transform:translateY(-2px);border-color:#a9c3f5}}
 .shortcut-dialog{width:min(540px,calc(100vw - 24px));color:#18243e}
-.shortcut-choice{border:1px solid #e2eafa;border-radius:14px;padding:14px;margin-bottom:12px}.shortcut-choice:last-child{margin-bottom:0}.shortcut-choice h3{font-size:16px;margin:0 0 12px}.shortcut-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.shortcut-options button,.shortcut-actions button{border:1px solid #dbe7fb;border-radius:9px;background:#edf3ff;color:#084bd1;font-weight:800;padding:11px}.shortcut-options button[data-type="easy"]{background:#eaf6ed;color:#216e47;border-color:#d1e8d9}
+#shortcut-list{display:grid;gap:10px}
+.shortcut-destination{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid #dbe7fb;border-radius:12px;background:#edf3ff;color:#084bd1;padding:14px 16px}
+.shortcut-destination>span:first-child{display:grid;gap:3px;flex:1;min-width:0}.shortcut-destination strong{font-size:16px;font-weight:800}.shortcut-destination small{font-size:12px;color:#536a94}.shortcut-destination>span:last-child{font-size:22px}
+#shortcut-list[data-type="easy"] .shortcut-destination{background:#eaf6ed;color:#216e47;border-color:#d1e8d9}
+.shortcut-actions button{border:1px solid #dbe7fb;border-radius:9px;background:#edf3ff;color:#084bd1;font-weight:800;padding:11px}
+@media(prefers-reduced-motion:reduce){.shortcut-pick{transition:none}.shortcut-pick:hover{transform:none}}
 #shortcut-summary{background:#f5f8ff;border-radius:12px;padding:12px;line-height:1.5}#shortcut-summary p{font-size:12px;color:#687791;margin:5px 0 10px}.shortcut-actions{display:flex;gap:8px;flex-wrap:wrap}.shortcut-actions button{font-size:12px}
-@media(max-width:540px){.shortcut-panel{padding:12px}.shortcut-open{padding:12px;gap:8px}.shortcut-open strong{font-size:16px}.shortcut-open small{font-size:10px}#shortcut-line{stroke-width:3px}}
-
+@media(max-width:540px){.shortcut-panel{padding:12px}.shortcut-card{padding:14px 12px 12px}.shortcut-peek{right:18px;width:80px;height:49px;top:-40px}.shortcut-paws{right:45px;width:26px;height:14px;top:-5px}.shortcut-card-title{font-size:17px}.shortcut-picks{gap:8px}.shortcut-pick{gap:7px;padding:10px 8px}.shortcut-pick svg{width:36px;height:33px}.shortcut-pick-text strong{font-size:14px}.shortcut-pick-text small{font-size:10px}.shortcut-pick-arrow{display:none}#shortcut-line{stroke-width:3px}}
